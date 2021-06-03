@@ -1,11 +1,11 @@
 package com.lggames.LG_Games.model;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
+import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+import java.util.List;
 
 @Entity
 public class Categoria {
@@ -20,6 +20,10 @@ public class Categoria {
 
     @Size(max = 255)
     private String descricao;
+
+    @OneToMany(mappedBy = "categoria", cascade = CascadeType.ALL)
+    @JsonIgnoreProperties("jogo")
+    private List<Jogo> jogo;
 
     public Long getId() {
         return id;

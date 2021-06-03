@@ -25,7 +25,7 @@ public class JogoController {
     @GetMapping("/{id}")
     public ResponseEntity<Jogo> GetById(@PathVariable long id)
     {
-        return jrepository.findById(id).map(resp -> ResponseEntity.ok(resp)).orElse(ResponseEntity.notFound().build());
+        return jrepository.findById(id).map(ResponseEntity::ok).orElse(ResponseEntity.notFound().build());
     }
 
     @GetMapping("/{nome}}")
