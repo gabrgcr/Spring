@@ -9,4 +9,5 @@ import java.util.Set;
 @Repository
 public interface CategoriaRepository extends JpaRepository<Categoria,Long> {
     public Set<Categoria> findAllByNomeContainingIgnoreCase(String nome);
+
 }
