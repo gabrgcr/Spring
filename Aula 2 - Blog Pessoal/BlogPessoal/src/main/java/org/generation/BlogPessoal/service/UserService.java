@@ -16,17 +16,17 @@ public class UserService {
 
 		@Autowired
 		private UsuarioRepository repository;
-		
+
 		public Usuario CadastrarUsuario(Usuario user)
 		{
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
-			
+
 			String senhaEncoder = encoder.encode(user.getSenha());
 			user.setSenha(senhaEncoder);
-			
+
 			return repository.save(user);
 		}
-		
+
 		public Optional<UserLogin> Logar(Optional<UserLogin> user)
 		{
 			BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -36,10 +36,12 @@ public class UserService {
 				String auth = user.get().getUser() + ":" + user.get().getSenha();
 				byte[] encodeAuth = Base64.encodeBase64(auth.getBytes(Charset.forName("US-ASCII")));
 				String authHeader = "Basic " + new String(encodeAuth);
-				
+
 				user.get().setToken(authHeader);
+				user.get().setId(user.get().getId());
 				user.get().setNome(user.get().getNome());
-				
+				user.get().setFoto(user.get().getFoto());
+				user.get().setTipo(user.get().getTipo());
 				return user;
 			}
 			return null;

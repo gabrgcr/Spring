@@ -37,9 +37,18 @@ public class Posts {
 	@ManyToOne
 	@JsonIgnoreProperties("Posts")
 	private Tema tema;
-	
-	
-	
+
+	@ManyToOne
+	@JsonIgnoreProperties("Posts")
+	private Usuario usuario;
+
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
 	public Tema getTema() {
 		return tema;
 	}
